@@ -202,6 +202,46 @@ const questions = [
       { text: "Cảm thấy khó chịu nếu kế hoạch bị thay đổi", trait: "J" },
     ],
   },
+  {
+    id: 26,
+    question: "Bạn có thích thử thách mới không?",
+    options: [
+      { text: "Có, tôi thích sự thay đổi", trait: "E" },
+      { text: "Không, tôi thích sự ổn định", trait: "I" },
+    ],
+  },
+  {
+    id: 27,
+    question: "Khi làm việc, bạn thích điều gì nhất?",
+    options: [
+      { text: "Mọi thứ rõ ràng và có kế hoạch", trait: "J" },
+      { text: "Cảm giác tự do và linh hoạt", trait: "P" },
+    ],
+  },
+  {
+    id: 28,
+    question: "Bạn cảm thấy thế nào khi phải thuyết trình trước đám đông?",
+    options: [
+      { text: "Thích thú và hào hứng", trait: "E" },
+      { text: "Lo lắng và căng thẳng", trait: "I" },
+    ],
+  },
+  {
+    id: 29,
+    question: "Bạn cảm thấy thế nào về việc sử dụng công nghệ?",
+    options: [
+      { text: "Cập nhật và sử dụng thường xuyên", trait: "N" },
+      { text: "Cẩn trọng và sử dụng vừa phải", trait: "S" },
+    ],
+  },
+  {
+    id: 30,
+    question: "Bạn sẽ làm gì khi gặp một vấn đề khó khăn?",
+    options: [
+      { text: "Lên kế hoạch và giải quyết từ từ", trait: "J" },
+      { text: "Tìm kiếm giải pháp nhanh chóng và thử nghiệm", trait: "P" },
+    ],
+  },
 ];
 
 export default questions;
