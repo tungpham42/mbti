@@ -22,7 +22,7 @@ function MBTIForm() {
   };
 
   useEffect(() => {
-    // Function to shuffle the questions array
+    // Utility function to shuffle an array
     const shuffleArray = (array) => {
       const shuffled = [...array];
       for (let i = shuffled.length - 1; i > 0; i--) {
@@ -32,8 +32,12 @@ function MBTIForm() {
       return shuffled;
     };
 
-    // Randomize questions when the component mounts
-    setRandomizedQuestions(shuffleArray(questions));
+    // Shuffle questions and their options
+    const shuffledQuestions = questions.map((q) => ({
+      ...q,
+      options: shuffleArray(q.options), // Randomize options for each question
+    }));
+    setRandomizedQuestions(shuffleArray(shuffledQuestions)); // Randomize the questions order
   }, []);
 
   return (
