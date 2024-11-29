@@ -10,7 +10,7 @@ function App() {
     <Container className="py-5 col-md-8">
       <Row>
         <Col md={{ span: 8, offset: 2 }}>
-          <h1 className="text-center mb-4">Kiểm tra tính cách</h1>
+          <h1 className="text-center mb-4">Kiểm tra tính cách MBTI</h1>
           <MBTIForm />
         </Col>
       </Row>
