@@ -128,11 +128,11 @@ const MBTITest = () => {
             <p>
               <strong>Mô tả chi tiết:</strong>
             </p>
-            <div>
+            <ul>
               {typeDescription.split("\n").map((line, index) => (
-                <p key={index}>{line}</p>
+                <li key={index}>{line}</li>
               ))}
-            </div>
+            </ul>
           </Card.Body>
         </Card>
       )}
