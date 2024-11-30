@@ -1,10 +1,11 @@
 const questions = [
   {
     id: 1,
-    question: "Bạn lấy năng lượng từ đâu?",
+    question:
+      "Bạn có cảm thấy thoải mái khi giao tiếp trong các tình huống xã hội không?",
     options: [
-      { text: "Hướng ngoại", trait: "E" },
-      { text: "Hướng nội", trait: "I" },
+      { text: "Thích giao tiếp với nhiều người", trait: "E" },
+      { text: "Thích giao tiếp với một nhóm nhỏ", trait: "I" },
     ],
   },
   {
@@ -240,6 +241,58 @@ const questions = [
     options: [
       { text: "Lên kế hoạch và giải quyết từ từ", trait: "J" },
       { text: "Tìm kiếm giải pháp nhanh chóng và thử nghiệm", trait: "P" },
+    ],
+  },
+  {
+    id: 31,
+    question: "Bạn có xu hướng giải quyết các vấn đề xã hội như thế nào?",
+    options: [
+      { text: "Đưa ra giải pháp cụ thể và thực tế", trait: "T" },
+      { text: "Tìm cách hiểu và đồng cảm với mọi người", trait: "F" },
+    ],
+  },
+  {
+    id: 32,
+    question: "Bạn cảm thấy thế nào khi có sự thay đổi trong công việc?",
+    options: [
+      { text: "Thích ứng nhanh chóng và tìm cách cải thiện", trait: "P" },
+      { text: "Cảm thấy không thoải mái và muốn ổn định", trait: "J" },
+    ],
+  },
+  {
+    id: 33,
+    question: "Khi đối diện với tình huống mới, bạn thường làm gì?",
+    options: [
+      { text: "Đánh giá kỹ lưỡng và chuẩn bị trước", trait: "S" },
+      { text: "Lập kế hoạch ngay lập tức để thử nghiệm", trait: "N" },
+    ],
+  },
+  {
+    id: 34,
+    question: "Bạn xử lý các tình huống khẩn cấp như thế nào?",
+    options: [
+      { text: "Tập trung vào việc giải quyết ngay lập tức", trait: "T" },
+      {
+        text: "Dành thời gian để xem xét cảm xúc và phản ứng của mọi người",
+        trait: "F",
+      },
+    ],
+  },
+  {
+    id: 35,
+    question: "Khi giải quyết vấn đề, bạn thích làm gì hơn?",
+    options: [
+      { text: "Dựa vào các thông tin cụ thể và rõ ràng", trait: "S" },
+      { text: "Dựa vào sự phán đoán và mối liên kết trừu tượng", trait: "N" },
+    ],
+  },
+  {
+    id: 36,
+    question:
+      "Khi bạn phải đưa ra quyết định quan trọng, bạn thường nghĩ đến điều gì?",
+    options: [
+      { text: "Dựa trên sự logic và tính hợp lý", trait: "T" },
+      { text: "Dựa trên cảm xúc và sự tác động đến người khác", trait: "F" },
     ],
   },
 ];

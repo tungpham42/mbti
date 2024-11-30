@@ -3,7 +3,7 @@ import { Button, Form, Container, Card } from "react-bootstrap";
 import questions from "./data/questions";
 import mbtiResults from "./data/mbtiResults";
 
-// Function to shuffle the questions array using Fisher-Yates algorithm
+// Function to shuffle an array using Fisher-Yates algorithm
 const shuffleArray = (array) => {
   const shuffledArray = [...array];
   for (let i = shuffledArray.length - 1; i > 0; i--) {
@@ -20,10 +20,23 @@ const MBTITest = () => {
   const [mbtiType, setMbtiType] = useState("");
   const [shuffledQuestions, setShuffledQuestions] = useState([]);
 
-  // Shuffle questions when the component mounts
+  // Shuffle questions and options when the component mounts
   useEffect(() => {
-    setShuffledQuestions(shuffleArray(questions));
+    shuffleQuestions();
   }, []);
+
+  // Function to shuffle questions and options
+  const shuffleQuestions = () => {
+    const shuffled = shuffleArray(questions);
+    const shuffledWithOptions = shuffled.map((question) => ({
+      ...question,
+      options: shuffleArray(question.options),
+    }));
+    setShuffledQuestions(shuffledWithOptions);
+    setAnswers([]);
+    setCurrentQuestionIndex(0);
+    setShowResult(false);
+  };
 
   // Handles the selection of an answer and moves to the next question
   const handleAnswer = (trait) => {
@@ -112,6 +125,12 @@ const MBTITest = () => {
           </Card.Body>
         </Card>
       )}
+
+      <div className="text-center mt-4">
+        <Button variant="secondary" onClick={shuffleQuestions}>
+          Làm lại
+        </Button>
+      </div>
     </Container>
   );
 };
