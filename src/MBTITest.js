@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Button, Form, Container, Card } from "react-bootstrap";
 import questions from "./data/questions";
 import mbtiResults from "./data/mbtiResults";
+import types from "./data/types";
 
 // Function to shuffle an array using Fisher-Yates algorithm
 const shuffleArray = (array) => {
@@ -18,14 +19,13 @@ const MBTITest = () => {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [showResult, setShowResult] = useState(false);
   const [mbtiType, setMbtiType] = useState("");
+  const [typeDescription, setTypeDescription] = useState("");
   const [shuffledQuestions, setShuffledQuestions] = useState([]);
 
-  // Shuffle questions and options when the component mounts
   useEffect(() => {
     shuffleQuestions();
   }, []);
 
-  // Function to shuffle questions and options
   const shuffleQuestions = () => {
     const shuffled = shuffleArray(questions);
     const shuffledWithOptions = shuffled.map((question) => ({
@@ -38,7 +38,6 @@ const MBTITest = () => {
     setShowResult(false);
   };
 
-  // Handles the selection of an answer and moves to the next question
   const handleAnswer = (trait) => {
     const newAnswers = [...answers, trait];
     setAnswers(newAnswers);
@@ -50,37 +49,40 @@ const MBTITest = () => {
     }
   };
 
-  // Calculate the MBTI result based on answers
   const calculateResult = (answers) => {
-    // Count the frequency of each trait for the four personality dimensions
     const counts = {
       E: 0,
-      I: 0, // Extraversion vs. Introversion
+      I: 0,
       S: 0,
-      N: 0, // Sensing vs. Intuition
+      N: 0,
       T: 0,
-      F: 0, // Thinking vs. Feeling
+      F: 0,
       J: 0,
-      P: 0, // Judging vs. Perceiving
+      P: 0,
     };
 
     answers.forEach((answer) => {
       counts[answer] = (counts[answer] || 0) + 1;
     });
 
-    // Determine each personality dimension based on counts
     const personalityType = [
-      counts.E > counts.I ? "E" : "I", // Extraversion vs. Introversion
-      counts.S > counts.N ? "S" : "N", // Sensing vs. Intuition
-      counts.T > counts.F ? "T" : "F", // Thinking vs. Feeling
-      counts.J > counts.P ? "J" : "P", // Judging vs. Perceiving
+      counts.E > counts.I ? "E" : "I",
+      counts.S > counts.N ? "S" : "N",
+      counts.T > counts.F ? "T" : "F",
+      counts.J > counts.P ? "J" : "P",
     ].join("");
 
-    // Find the result that matches the calculated type
     const result = mbtiResults.find(
       (result) => result.type === personalityType
     );
+
+    const typeDesc = personalityType
+      .split("")
+      .map((trait) => types.find((t) => t.type === trait)?.description)
+      .join("\n");
+
     setMbtiType(result);
+    setTypeDescription(typeDesc);
   };
 
   return (
@@ -122,6 +124,15 @@ const MBTITest = () => {
             <p>
               <strong>Điểm yếu:</strong> {mbtiType.cons}
             </p>
+            <hr />
+            <p>
+              <strong>Mô tả chi tiết:</strong>
+            </p>
+            <div>
+              {typeDescription.split("\n").map((line, index) => (
+                <p key={index}>{line}</p>
+              ))}
+            </div>
           </Card.Body>
         </Card>
       )}
