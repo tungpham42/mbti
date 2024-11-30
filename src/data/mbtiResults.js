@@ -1,7 +1,7 @@
 const results = [
   {
     type: "ESTJ",
-    shortTerm: "Quản lý thực tế",
+    shortTerm: "The Executive - Quản lý thực tế",
     description:
       "Bạn là người thực tế, tổ chức tốt và tập trung vào hiệu quả. Bạn thường giữ vai trò lãnh đạo và thích tạo ra cấu trúc và trật tự trong cuộc sống.",
     trait: "Quản lý, quyết đoán, thực tế",
@@ -10,7 +10,7 @@ const results = [
   },
   {
     type: "ESTP",
-    shortTerm: "Mạo hiểm và năng động",
+    shortTerm: "The Entrepreneur - Mạo hiểm và năng động",
     description:
       "Bạn năng động, yêu thích thử thách và có kỹ năng xử lý tình huống nhanh. Bạn thích trải nghiệm mới và sống trong hiện tại.",
     trait: "Mạo hiểm, năng động, lạc quan",
@@ -19,7 +19,7 @@ const results = [
   },
   {
     type: "ESFJ",
-    shortTerm: "Người chăm sóc và hợp tác",
+    shortTerm: "The Consul - Người chăm sóc và hợp tác",
     description:
       "Bạn giàu lòng nhân ái, tập trung vào việc hỗ trợ người khác và tạo môi trường hài hòa. Bạn rất coi trọng mối quan hệ cá nhân.",
     trait: "Nhân hậu, thân thiện, hợp tác",
@@ -28,7 +28,7 @@ const results = [
   },
   {
     type: "ESFP",
-    shortTerm: "Người sống hết mình",
+    shortTerm: "The Entertainer - Người sống hết mình",
     description:
       "Bạn vui vẻ, hướng ngoại và yêu thích giải trí. Bạn sống hết mình trong hiện tại và truyền cảm hứng cho những người xung quanh.",
     trait: "Hướng ngoại, vui vẻ, sáng tạo",
@@ -37,7 +37,7 @@ const results = [
   },
   {
     type: "ISTJ",
-    shortTerm: "Người có tổ chức",
+    shortTerm: "The Logistician - Người có tổ chức",
     description:
       "Bạn logic, đáng tin cậy và làm việc dựa trên các nguyên tắc. Bạn thích duy trì các quy tắc và trật tự.",
     trait: "Trách nhiệm, có tổ chức, tỉ mỉ",
@@ -46,7 +46,7 @@ const results = [
   },
   {
     type: "ISTP",
-    shortTerm: "Nhà phân tích độc lập",
+    shortTerm: "The Virtuoso - Nhà phân tích độc lập",
     description:
       "Bạn thích giải quyết vấn đề bằng cách áp dụng tư duy logic và kỹ năng thực hành. Bạn thường không thể đoán trước và yêu thích tự do.",
     trait: "Logic, độc lập, thực tế",
@@ -55,7 +55,7 @@ const results = [
   },
   {
     type: "ISFJ",
-    shortTerm: "Người trung thành và chăm sóc",
+    shortTerm: "The Defender - Người trung thành và chăm sóc",
     description:
       "Bạn trung thành, tận tâm và luôn sẵn lòng giúp đỡ người khác. Bạn là người xây dựng sự ổn định trong các mối quan hệ.",
     trait: "Trung thành, chăm sóc, đáng tin cậy",
@@ -64,7 +64,7 @@ const results = [
   },
   {
     type: "ISFP",
-    shortTerm: "Người sáng tạo và nội tâm",
+    shortTerm: "The Adventurer - Người sáng tạo và nội tâm",
     description:
       "Bạn sống nội tâm, sáng tạo và nhạy cảm với cái đẹp. Bạn yêu thích sự tự do trong việc thể hiện bản thân.",
     trait: "Sáng tạo, dịu dàng, nội tâm",
@@ -73,7 +73,7 @@ const results = [
   },
   {
     type: "ENTJ",
-    shortTerm: "Lãnh đạo quyết đoán",
+    shortTerm: "The Commander - Lãnh đạo quyết đoán",
     description:
       "Bạn mạnh mẽ, tự tin và có khả năng lãnh đạo tự nhiên. Bạn thường có tầm nhìn xa và khả năng hoạch định.",
     trait: "Lãnh đạo, quyết đoán, chiến lược",
@@ -82,7 +82,7 @@ const results = [
   },
   {
     type: "ENTP",
-    shortTerm: "Nhà sáng tạo và tranh luận",
+    shortTerm: "The Debater - Nhà sáng tạo và tranh luận",
     description:
       "Bạn sáng tạo, cởi mở và yêu thích những cuộc tranh luận ý nghĩa. Bạn thường tìm kiếm ý tưởng mới và giải pháp sáng tạo.",
     trait: "Sáng tạo, năng động, thích tranh luận",
@@ -91,7 +91,7 @@ const results = [
   },
   {
     type: "ENFJ",
-    shortTerm: "Lãnh đạo và đồng cảm",
+    shortTerm: "The Protagonist - Lãnh đạo và đồng cảm",
     description:
       "Bạn có khả năng lãnh đạo và kết nối với người khác. Bạn nhạy bén với nhu cầu của cộng đồng và luôn muốn mang lại giá trị tốt nhất.",
     trait: "Lãnh đạo, đồng cảm, có tầm nhìn",
@@ -100,7 +100,7 @@ const results = [
   },
   {
     type: "ENFP",
-    shortTerm: "Người nhiệt huyết và sáng tạo",
+    shortTerm: "The Campaigner - Người nhiệt huyết và sáng tạo",
     description:
       "Bạn nhiệt huyết, tràn đầy năng lượng và có khả năng sáng tạo vô hạn. Bạn luôn tìm kiếm sự tự do và khám phá.",
     trait: "Hướng ngoại, sáng tạo, nhiệt huyết",
@@ -109,7 +109,7 @@ const results = [
   },
   {
     type: "INFJ",
-    shortTerm: "Nhà tư tưởng lý tưởng",
+    shortTerm: "The Advocate - Nhà tư tưởng lý tưởng",
     description:
       "Bạn nhạy cảm, chu đáo và có tầm nhìn sâu sắc về cuộc sống. Bạn thường muốn tạo ra ý nghĩa và sự thay đổi tích cực.",
     trait: "Nhạy cảm, lý tưởng, tư duy sâu sắc",
@@ -118,7 +118,7 @@ const results = [
   },
   {
     type: "INFP",
-    shortTerm: "Người lý tưởng và trắc ẩn",
+    shortTerm: "The Mediator - Người lý tưởng và trắc ẩn",
     description:
       "Bạn giàu lòng trắc ẩn, sáng tạo và lý tưởng hóa mọi điều trong cuộc sống. Bạn luôn tìm kiếm sự hài hòa và ý nghĩa sâu xa.",
     trait: "Lý tưởng, nhạy cảm, trắc ẩn",
@@ -127,7 +127,7 @@ const results = [
   },
   {
     type: "INTJ",
-    shortTerm: "Nhà chiến lược độc lập",
+    shortTerm: "The Architect - Nhà chiến lược độc lập",
     description:
       "Bạn là người phân tích, sáng tạo và có khả năng lên kế hoạch dài hạn. Bạn thường có tầm nhìn rõ ràng về tương lai.",
     trait: "Chiến lược, sáng tạo, độc lập",
@@ -136,7 +136,7 @@ const results = [
   },
   {
     type: "INTP",
-    shortTerm: "Nhà phân tích lý thuyết",
+    shortTerm: "The Thinker - Nhà phân tích lý thuyết",
     description:
       "Bạn là người tò mò, yêu thích nghiên cứu và khám phá các lý thuyết. Bạn phân tích mọi thứ một cách chi tiết và logic.",
     trait: "Tò mò, phân tích, lý thuyết",
