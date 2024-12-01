@@ -3,6 +3,8 @@ import { Button, Form, Container, Card } from "react-bootstrap";
 import questions from "./data/questions";
 import mbtiResults from "./data/mbtiResults";
 import types from "./data/types";
+import mbtiCognitiveFunctions from "./data/mbtiCognitiveFunctions";
+import mbtiCognitiveFunctionsDetails from "./data/mbtiCognitiveFunctionsDetails";
 
 // Function to shuffle an array using Fisher-Yates algorithm
 const shuffleArray = (array) => {
@@ -20,6 +22,7 @@ const MBTITest = () => {
   const [showResult, setShowResult] = useState(false);
   const [mbtiType, setMbtiType] = useState("");
   const [typeDescription, setTypeDescription] = useState("");
+  const [cognitiveFunctions, setCognitiveFunctions] = useState({});
   const [shuffledQuestions, setShuffledQuestions] = useState([]);
 
   useEffect(() => {
@@ -81,8 +84,35 @@ const MBTITest = () => {
       .map((trait) => types.find((t) => t.type === trait)?.description)
       .join("\n");
 
+    // Add cognitive functions to the result
+    const functions = mbtiCognitiveFunctions[personalityType];
+
+    const cognitiveDetails = {
+      "Chức năng nhận thức chính": functions
+        ? mbtiCognitiveFunctionsDetails.find(
+            (f) => f.type === functions.Primary
+          )
+        : null,
+      "Chức năng nhận thức phụ": functions
+        ? mbtiCognitiveFunctionsDetails.find(
+            (f) => f.type === functions.Auxiliary
+          )
+        : null,
+      "Chức năng nhận thức thứ ba": functions
+        ? mbtiCognitiveFunctionsDetails.find(
+            (f) => f.type === functions.Tertiary
+          )
+        : null,
+      "Chức năng nhận thức kém": functions
+        ? mbtiCognitiveFunctionsDetails.find(
+            (f) => f.type === functions.Inferior
+          )
+        : null,
+    };
+
     setMbtiType(result);
     setTypeDescription(typeDesc);
+    setCognitiveFunctions(cognitiveDetails);
   };
 
   return (
@@ -132,6 +162,26 @@ const MBTITest = () => {
               {typeDescription.split("\n").map((line, index) => (
                 <li key={index}>{line}</li>
               ))}
+            </ul>
+            <hr />
+            <h4>Chức năng nhận thức:</h4>
+            <ul>
+              {Object.entries(cognitiveFunctions).map(
+                ([key, functionDetail], index) =>
+                  functionDetail && (
+                    <li key={index}>
+                      <strong>{key}:</strong>{" "}
+                      <em>
+                        {functionDetail.type} - {functionDetail.short}
+                      </em>
+                      <br />
+                      <strong>Mô tả:</strong> {functionDetail.description}
+                      <br />
+                      <strong>Đặc điểm chung:</strong>{" "}
+                      {functionDetail.character}
+                    </li>
+                  )
+              )}
             </ul>
           </Card.Body>
         </Card>
