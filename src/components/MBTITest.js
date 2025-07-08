@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { Button, Form, Container, Card } from "react-bootstrap";
-import questions from "./data/questions";
-import mbtiResults from "./data/mbtiResults";
-import types from "./data/types";
-import mbtiCognitiveFunctions from "./data/mbtiCognitiveFunctions";
-import mbtiCognitiveFunctionsDetails from "./data/mbtiCognitiveFunctionsDetails";
+import questions from "../data/questions";
+import mbtiResults from "../data/mbtiResults";
+import types from "../data/types";
+import mbtiCognitiveFunctions from "../data/mbtiCognitiveFunctions";
+import mbtiCognitiveFunctionsDetails from "../data/mbtiCognitiveFunctionsDetails";
 
 // Function to shuffle an array using Fisher-Yates algorithm
 const shuffleArray = (array) => {
@@ -16,7 +16,7 @@ const shuffleArray = (array) => {
   return shuffledArray;
 };
 
-const MBTITest = () => {
+const MBTITest = ({ onShowResultChange }) => {
   const [answers, setAnswers] = useState([]);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [showResult, setShowResult] = useState(false);
@@ -28,6 +28,12 @@ const MBTITest = () => {
   useEffect(() => {
     shuffleQuestions();
   }, []);
+
+  useEffect(() => {
+    if (onShowResultChange) {
+      onShowResultChange(showResult);
+    }
+  }, [showResult, onShowResultChange]);
 
   const shuffleQuestions = () => {
     const shuffled = shuffleArray(questions);
@@ -120,6 +126,9 @@ const MBTITest = () => {
       {!showResult ? (
         <Card>
           <Card.Body className="text-center">
+            <p className="text-muted mb-2">
+              Câu hỏi {currentQuestionIndex + 1} / {shuffledQuestions.length}
+            </p>
             <h3>{shuffledQuestions[currentQuestionIndex]?.question}</h3>
             <Form>
               {shuffledQuestions[currentQuestionIndex]?.options.map(
