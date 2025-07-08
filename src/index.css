@@ -1,5 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Fira+Code:wght@300..700&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap");
-/* Reset and base styles */
+/* Reset and processes styles */
 body {
   margin: 0;
   font-family: "Work Sans", sans-serif;
@@ -30,7 +30,7 @@ code {
   background: #ffffff;
   border: none;
   border-radius: 15px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0.15);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
   overflow: hidden;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   margin-bottom: 30px;
@@ -57,7 +57,7 @@ h4 {
   letter-spacing: 1px;
 }
 
-/* Button styling */
+/* Button styling for answer options */
 .btn-primary {
   background-image: linear-gradient(90deg, #8e2de2, #4a00e0);
   border: none;
@@ -65,15 +65,52 @@ h4 {
   font-size: 1.1rem;
   font-weight: 600;
   border-radius: 50px;
-  transition: backgroundImage 0.3s ease, transform 0.2s ease;
+  transition: background-image 0.3s ease, transform 0.2s ease,
+    box-shadow 0.2s ease;
   margin: 10px;
+  position: relative;
+  overflow: hidden;
 }
 
 .btn-primary:hover {
   background-image: linear-gradient(90deg, #4a00e0, #8e2de2);
   transform: scale(1.05);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 }
 
+/* Styling for selected answer */
+.btn-primary.bg-success {
+  background-image: linear-gradient(90deg, #28a745, #34c759);
+  color: #ffffff;
+  border: 2px solid #28a745;
+  box-shadow: 0 0 10px rgba(40, 167, 69, 0.5);
+  transform: scale(1.1);
+  transition: all 0.3s ease;
+}
+
+/* Optional: Add a subtle glow effect for selected answer */
+.btn-primary.bg-success::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.3) 10%,
+    transparent 10.01%
+  );
+  opacity: 0.3;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.btn-primary.bg-success:hover::after {
+  opacity: 0.5;
+}
+
+/* Secondary button styling */
 .btn-secondary {
   background-image: linear-gradient(90deg, #ff6b6b, #ff8e53);
   border: none;
@@ -81,12 +118,39 @@ h4 {
   font-size: 1.1rem;
   font-weight: 600;
   border-radius: 50px;
-  transition: backgroundImage 0.3s ease, transform 0.2s ease;
+  transition: background-image 0.3s ease, transform 0.2s ease;
 }
 
 .btn-secondary:hover {
   background-image: linear-gradient(90deg, #ff8e53, #ff6b6b);
   transform: scale(1.05);
+}
+
+/* Outline button styling */
+.btn-outline-secondary {
+  border: 2px solid #ff6b6b;
+  color: #ff6b6b;
+  background-color: transparent;
+  padding: 10px 28px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  border-radius: 50px;
+  transition: all 0.3s ease, transform 0.2s ease;
+  margin: 10px;
+}
+
+.btn-outline-secondary:hover {
+  background-image: linear-gradient(90deg, #ff8e53, #ff6b6b);
+  border-color: transparent;
+  color: #ffffff;
+  transform: scale(1.05);
+}
+
+.btn-outline-secondary:disabled {
+  border-color: #cccccc;
+  color: #cccccc;
+  opacity: 0.65;
+  cursor: not-allowed;
 }
 
 /* Text styling for results */
@@ -114,11 +178,11 @@ ul {
 }
 
 ul li {
-  background-image: #f8f9fa;
+  background-color: #f8f9fa;
   margin: 10px 0;
   padding: 20px;
   border-radius: 10px;
-  transition: backgroundImage 0.3s ease;
+  transition: background-color 0.3s ease;
 }
 
 ul li:hover {
@@ -147,7 +211,8 @@ hr {
 }
 
 .btn-primary,
-.btn-secondary {
+.btn-secondary,
+.btn-outline-secondary {
   animation: pulse 2s infinite;
 }
 
@@ -158,7 +223,8 @@ hr {
   }
 
   .btn-primary,
-  .btn-secondary {
+  .btn-secondary,
+  .btn-outline-secondary {
     padding: 10px 20px;
     font-size: 1rem;
   }

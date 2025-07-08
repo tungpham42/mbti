@@ -24,6 +24,8 @@ const MBTITest = ({ onShowResultChange }) => {
   const [typeDescription, setTypeDescription] = useState("");
   const [cognitiveFunctions, setCognitiveFunctions] = useState({});
   const [shuffledQuestions, setShuffledQuestions] = useState([]);
+  // New state to track selected option for the current question
+  const [selectedOption, setSelectedOption] = useState(null);
 
   useEffect(() => {
     shuffleQuestions();
@@ -35,6 +37,7 @@ const MBTITest = ({ onShowResultChange }) => {
     }
   }, [showResult, onShowResultChange]);
 
+  // Modified shuffleQuestions to reset selectedOption
   const shuffleQuestions = () => {
     const shuffled = shuffleArray(questions);
     const shuffledWithOptions = shuffled.map((question) => ({
@@ -45,16 +48,61 @@ const MBTITest = ({ onShowResultChange }) => {
     setAnswers([]);
     setCurrentQuestionIndex(0);
     setShowResult(false);
+    setSelectedOption(null); // Reset selected option
   };
 
-  const handleAnswer = (trait) => {
-    const newAnswers = [...answers, trait];
+  const handleAnswer = (trait, optionIndex) => {
+    const newAnswers = [...answers];
+    newAnswers[currentQuestionIndex] = trait; // Update or set answer for current question
     setAnswers(newAnswers);
+    setSelectedOption(optionIndex); // Store the selected option index
     if (currentQuestionIndex < shuffledQuestions.length - 1) {
       setCurrentQuestionIndex(currentQuestionIndex + 1);
+      // Clear selected option for the next question
+      setSelectedOption(null);
     } else {
       setShowResult(true);
       calculateResult(newAnswers);
+    }
+  };
+
+  const handlePrevious = () => {
+    if (currentQuestionIndex > 0) {
+      setCurrentQuestionIndex(currentQuestionIndex - 1);
+      // Restore selected option for the previous question
+      const previousAnswer = answers[currentQuestionIndex - 1];
+      const previousQuestion = shuffledQuestions[currentQuestionIndex - 1];
+      const selectedIndex = previousQuestion.options.findIndex(
+        (option) => option.trait === previousAnswer
+      );
+      setSelectedOption(selectedIndex !== -1 ? selectedIndex : null);
+    }
+  };
+
+  const handleNext = () => {
+    // Check if the current question has an answer
+    if (!answers[currentQuestionIndex]) {
+      return; // Do nothing if the current question is unanswered
+    }
+
+    if (currentQuestionIndex < shuffledQuestions.length - 1) {
+      setCurrentQuestionIndex(currentQuestionIndex + 1);
+      // Restore selected option for the next question
+      const nextAnswer = answers[currentQuestionIndex + 1];
+      const nextQuestion = shuffledQuestions[currentQuestionIndex + 1];
+      const selectedIndex = nextQuestion.options.findIndex(
+        (option) => option.trait === nextAnswer
+      );
+      setSelectedOption(selectedIndex !== -1 ? selectedIndex : null);
+    } else {
+      // Check if all questions have been answered
+      if (
+        answers.length === shuffledQuestions.length &&
+        answers.every((answer) => answer)
+      ) {
+        setShowResult(true);
+        calculateResult(answers);
+      }
     }
   };
 
@@ -71,7 +119,9 @@ const MBTITest = ({ onShowResultChange }) => {
     };
 
     answers.forEach((answer) => {
-      counts[answer] = (counts[answer] || 0) + 1;
+      if (answer) {
+        counts[answer] = (counts[answer] || 0) + 1;
+      }
     });
 
     const personalityType = [
@@ -90,7 +140,6 @@ const MBTITest = ({ onShowResultChange }) => {
       .map((trait) => types.find((t) => t.type === trait)?.description)
       .join("\n");
 
-    // Add cognitive functions to the result
     const functions = mbtiCognitiveFunctions[personalityType];
 
     const cognitiveDetails = {
@@ -136,14 +185,42 @@ const MBTITest = ({ onShowResultChange }) => {
                   <Button
                     key={index}
                     variant="primary"
-                    onClick={() => handleAnswer(option.trait)}
-                    className="m-2"
+                    onClick={() => handleAnswer(option.trait, index)}
+                    className={`m-2 ${
+                      selectedOption === index ? "bg-success text-white" : ""
+                    }`} // Highlight selected button
+                    style={{
+                      backgroundColor:
+                        selectedOption === index ? "#28a745" : "",
+                      borderColor: selectedOption === index ? "#28a745" : "",
+                    }} // Optional: Inline style for better control
                   >
                     {option.text}
                   </Button>
                 )
               )}
             </Form>
+            <div className="mt-3">
+              <Button
+                variant="outline-secondary"
+                onClick={handlePrevious}
+                disabled={currentQuestionIndex === 0}
+                className="m-2"
+              >
+                Quay lại
+              </Button>
+              <Button
+                variant="outline-secondary"
+                onClick={handleNext}
+                disabled={
+                  currentQuestionIndex === shuffledQuestions.length - 1 &&
+                  !answers[currentQuestionIndex]
+                }
+                className="m-2"
+              >
+                Tiếp theo
+              </Button>
+            </div>
           </Card.Body>
         </Card>
       ) : (
